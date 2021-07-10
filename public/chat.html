@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+      integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+      crossorigin="anonymous"
+    /> -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- new code -->
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.0"></script> -->
+
+
+    <!-- new code end -->
+    <title>ChatClone</title>
+  </head>
+  <body>
+    <button id="joincall" class="btn">Join Call</button>
+    <button id="VideoControl" class="btn">Close Camera</button>
+    <button id="AudioControl" class="btn">Mute</button>
+    <!-- new code start -->
+    <!-- <button id="start-btn" type="button" class="btn btn-sm btn-outline-success">Start</button>
+                      <button id="blur-btn" type="button" class="btn btn-sm btn-outline-secondary" disabled>Blur</button>
+                      <button id="unblur-btn" type="button" class="btn btn-sm btn-outline-secondary" hidden>Unblur</button>
+                      <button id="stop-btn" type="button" class="btn btn-sm btn-outline-danger" disabled>Stop</button> -->
+    <!-- new code end -->
+    <div id="vids">
+      <video class="embed-responsive-item" muted id="myvid" width="480" height="320" autoplay playsinline>
+      </video><canvas hidden id="canvas"></canvas></div>
+    
+    <div class="chat-container">
+      <header class="chat-header">
+        <h1><i class="fas fa-smile"></i> Teams Clone</h1>
+        <a id="leave-btn" class="btn">Leave Room</a>
+      </header>
+      <main class="chat-main">
+        <div class="chat-sidebar">
+          <h3><i class="fas fa-comments"></i> Room Name:</h3>
+          <h2 id="room-name"></h2>
+          <h3><i class="fas fa-users"></i> Users</h3>
+          <ul id="users"></ul>
+        </div>
+        <div class="chat-messages"></div>
+      </main>
+      <div class="chat-form-container">
+        <form id="chat-form">
+          <input
+            id="msg"
+            type="text"
+            placeholder="Enter Message"
+            required
+            autocomplete="off"
+          />
+          <button class="btn"><i class="fas fa-paper-plane"></i> Send</button>
+        </form>
+      </div>
+    </div>
+
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+    integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+
+    <script src="js/main.js"></script>
+
+    <!-- <script src="js/video.js"></script>
+  <style>
+    video {
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+    }
+  </style> -->
+  </body>
+</html>

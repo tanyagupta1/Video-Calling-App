@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UserPage</title>
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+    integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+      crossorigin="anonymous"
+    ></script>
+    
+</head>
+
+<body>    
+    <div>
+        <!-- <p>Welcome User </p> -->
+        <p id="name"></p>
+    </div>
+    <button onclick="displayUsers()">Show Users to create a room with</button>
+    <!-- <button onclick="window.location.href='createroom.html'">Create Room</button> -->
+    <div id="users"></div>
+    <h1>Links to Created Rooms</h1>
+    <div id="links"></div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
