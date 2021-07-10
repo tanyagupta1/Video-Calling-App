@@ -15,10 +15,22 @@
 }
 
 body {
-	font-family: 'Roboto', sans-serif;
+	/* font-family: 'Roboto', sans-serif;
 	font-size: 16px;
-	background: var(--light-color);
-	margin: 20px;
+	background: rgb(2, 3, 63);
+	margin: 20px; */
+
+
+	font-family:Arial Rounded MT;
+  /* background-color:rgb(20, 7, 70); */
+  background-image: url("../img/back.jpg");
+  --glowcol:rgba(255, 0, 150, 1);
+  --txtcol:rgba(255, 180, 245, 1);
+  --txtcoldark:rgba(100, 100, 100, 1);
+  --flycol:rgba(30, 30, 30, 0.6);
+  --glowsize:50px;
+  --fontsize:40pt;
+  min-height: 100vh;
 }
 
 ul {
@@ -33,24 +45,26 @@ a {
 	cursor: pointer;
 	padding: 5px 15px;
 	/* background: var(--light-color); */
-	background-color: rgb(236, 22, 75);
+	background-color: rgb(237, 238, 227);
+	
 	/* color: var(--dark-color-a); */
-	color: blanchedalmond;
+	color: rgb(4, 9, 31);
 	margin-bottom: 10px;
 	font-size: 17px;
+	border-radius: 12px;
 	
 }
 button:hover {
-	background-color: #4CAF50; /* Green */
+	background-color: #ca7be2; /* Green */
 	color: white;
   }
 .btn2 {
 	cursor: pointer;
 	padding: 5px 15px;
 	/* background: var(--light-color); */
-	background-color: rgb(142, 141, 177);
+	background-color: rgb(231, 231, 235);
 	/* color: var(--dark-color-a); */
-	color: blanchedalmond;
+	color: rgb(22, 21, 19);
 	border: solid;
 	border-color: black;
 	font-size: 14px;
@@ -60,6 +74,8 @@ button:hover {
 button:disabled
 {
 	background: #dddddd;
+	color: seashell;
+	border: none;
 }
 /* Chat Page */
 
@@ -215,4 +231,69 @@ button:disabled
 	.chat-sidebar {
 		display: none;
 	}
+}
+
+
+  @keyframes flicker{
+	0%{text-shadow: 0px 0px var(--glowsize) var(--glowcol), 0px 0px 6px var(--glowcol); color:var(--txtcol);}
+	80%{text-shadow: 0px 0px var(--glowsize) var(--glowcol), 0px 0px 6px var(--glowcol); color:var(--txtcol);}
+	90%{text-shadow: none; color:var(--txtcoldark);}
+	95%{text-shadow: 0px 0px var(--glowsize) var(--glowcol), 0px 0px 6px var(--glowcol); color:var(--txtcol);}
+	100%{text-shadow: none; color:var(--txtcoldark);}
+  }
+  @keyframes fly{
+	0%{transform:translateX(0px) translatey(calc(var(--fontsize)*0.3)) rotate(40deg) scale(0.25,0.1);}
+	30%{transform:translateX(calc(var(--fontsize)*0.8)) translatey(calc(var(--fontsize)*0.5)) rotate(0deg) scale(0.25,0.1);}
+	60%{transform:translateX(calc(var(--fontsize)*1)) translatey(calc(var(--fontsize)*0.2)) rotate(-20deg) scale(0.25,0.1);}
+	80%{transform:translateX(calc(var(--fontsize)*1.1)) translatey(0px) rotate(-50deg) scale(0.25,0.1);}
+	100%{transform:translateX(calc(var(--fontsize)*0.9)) translatey(calc(var(--fontsize)*-0.6)) rotate(0deg) scale(0.25,0.1);}
+  }
+  @keyframes fly1{
+	0%{transform:translateX(-100px) translatey(calc(var(--fontsize)*-0.3)) rotate(-30deg) scale(0.25,0.1);}
+	30%{transform:translateX(calc(var(--fontsize)*-1)) translatey(calc(var(--fontsize)*-1)) rotate(0deg) scale(0.25,0.1);}
+	60%{transform:translateX(calc(var(--fontsize)*-1)) translatey(calc(var(--fontsize)*0.5)) rotate(10deg) scale(0.25,0.1);}
+	80%{transform:translateX(calc(var(--fontsize)*-1.1)) translatey(0px) rotate(20deg) scale(0.25,0.1);}
+	100%{transform:translateX(calc(var(--fontsize)*-0.9)) translatey(calc(var(--fontsize)*-0.6)) rotate(0deg) scale(0.25,0.1);}
+  }
+  
+  #title{
+	text-align:center;
+	position:relative;
+	color:var(--txtcoldark);
+	font-size:var(--fontsize);
+	z-index:-1;
+	animation-name: flicker;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+  }
+  #title::before{
+	content:'\25CF';
+	position:absolute;
+	color: var(--flycol);
+	text-shadow:none;
+	animation-name: fly;
+	animation-duration: 4s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: ease;
+  }
+  #title::after{
+	content:'\25CF';
+	position:absolute;
+	color: var(--flycol);
+	text-shadow:none;
+	animation-name: fly1;
+	animation-duration: 6s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate-reverse;
+	animation-timing-function: ease;
+  }
+  .title{
+	  margin-bottom:40 px ;
+  }
+  .page-break {
+    display: flex;
+    flex-direction: column;
+	justify-content: space-between;
+	min-height: 25vh;
 }

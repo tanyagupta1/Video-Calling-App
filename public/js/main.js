@@ -131,7 +131,7 @@ function outputUsers(users) {
 document.getElementById('leave-btn').addEventListener('click', () => {
   const leaveRoom = confirm('Are you sure you want to leave the chatroom?');
   if (leaveRoom) {
-    window.location = '../index.html';
+    window.history.back()
   } else {
   }
 });
@@ -179,6 +179,8 @@ function connectToNewUser(userId, stream) { // This runs when someone joins our 
   call.on('close', () => {
     let video=document.getElementById('peerVideo')
       video.remove()
+      leaveCall.disabled=true;
+      joinCall.disabled=false;
   })
 }
 function CreateVideo(stream)
@@ -201,6 +203,9 @@ function CreateVideo(stream)
       let video=document.getElementById('peerVideo')
       video.srcObject=null
       video.remove()
+      count--;
+      leaveCall.disabled=true;
+      joinCall.disabled=false;
     })
 
 
@@ -250,10 +255,10 @@ function audioControl()
     }
 }
 leaveCall.addEventListener('click',()=>{
-  myPeer.getRTC
-
+  // myPeer.call('close')
+// myPeer.destroy()
   joinCall.disabled=false
   leaveCall.disabled=true;
-  // socket.emit('end call')
+  socket.emit('end call')
 })
 

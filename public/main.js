@@ -57,7 +57,7 @@ const { email, psw,name } = Qs.parse(location.search, {
 });
 const socket = io();
 socket.emit('register',{name,email,psw})
-document.getElementById('name').innerHTML="Welcome  "+name
+document.getElementById('title').innerHTML="Welcome  "+name
 function displayRooms()
 {
   socket.emit('send rooms',name)
@@ -74,6 +74,7 @@ socket.on('rooms list',(docs)=>
       var link = document.createTextNode(docs[i].roomname);
       a.appendChild(link); 
       a.title = docs[i].roomname; 
+      a.style.color="white"
       a.href = "chat.html?username="+name+"&room="+docs[i].roomname;  
       mydiv.append(a)
       document.getElementById('links').append(mydiv);
@@ -120,7 +121,8 @@ socket.on('user list',(docs)=>{
       socket.emit('create room',{rname,name,other})
       console.log(name,other,rname)
       var linkdiv=document.createElement('div')
-      var a=document.createElement('a')         
+      var a=document.createElement('a')   
+      a.style.color="white"      
       var link = document.createTextNode(rname);
       // linkdiv.align="center"
       a.appendChild(link); 
