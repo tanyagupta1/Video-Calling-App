@@ -171,6 +171,21 @@ query.count(function (err, count) {
     
   })
 
+  socket.on('all rooms',(name)=>
+  {
+    RoomUsers.find({},function(err,docs){
+      
+        if(err) console.log(err)
+        else 
+        {
+          socket.emit('all rooms',docs)
+          console.log(docs)
+          console.log('sent all rooms')
+        }
+    })
+    
+  })
+
 
 
 
@@ -208,7 +223,12 @@ query.count(function (err, count) {
 
     }
   });
+  socket.on('end call',()=>{
+    const user = getCurrentUser(socket.id);
+    io.to(user.room).emit('remove peer')
+  })
 });
+
 
 
 

@@ -7,6 +7,7 @@ const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
 const joinCall= document.getElementById('joincall')
 const shareScreen=document.getElementById('ShareScreen')
+const leaveCall=document.getElementById('leavecall')
 let myPeer
 let screenPeer
 let Stream
@@ -138,6 +139,8 @@ document.getElementById('leave-btn').addEventListener('click', () => {
 joinCall.addEventListener('click',()=>
 {
   myvid.play()
+  joinCall.disabled=true
+  leaveCall.disabled=false;
   myPeer = new Peer()
   myPeer.on('open', id => { // When we first open the app, have us join a room
   
@@ -158,13 +161,14 @@ joinCall.addEventListener('click',()=>
 
 //videp send
 socket.on('new conn',(id)=>{
-  console.log(socket.id,"i received a request so sending my video")
+  console.log(socket.id,"i received a request so sending my video",id)
 
   connectToNewUser(id, Stream) 
 
 })
 
 function connectToNewUser(userId, stream) { // This runs when someone joins our room
+  if(myPeer==null) myPeer=new Peer()
   const call = myPeer.call(userId, stream) // Call the user who just joined
 
   // Add their video
@@ -186,6 +190,8 @@ function CreateVideo(stream)
         video.id='peerVideo'
         video.srcObject=stream
         video.class='embed-responsive-item'
+        video.width="480"
+        video.height="320"
         document.querySelector('#vids').append(video)
         video.play()
     }
@@ -243,4 +249,11 @@ function audioControl()
         document.getElementById("AudioControl").innerHTML = "Unmute";
     }
 }
+leaveCall.addEventListener('click',()=>{
+  myPeer.getRTC
+
+  joinCall.disabled=false
+  leaveCall.disabled=true;
+  // socket.emit('end call')
+})
 

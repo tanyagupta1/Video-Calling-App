@@ -9,19 +9,19 @@
     integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
       crossorigin="anonymous"
     ></script>
-    
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>    
-    <div>
+    <div >
         <!-- <p>Welcome User </p> -->
-        <p id="name"></p>
+        <h1 id="name"></h1>
     </div>
-    <button onclick="displayUsers()">Show Users to create a room with</button>
+    <button onclick="displayUsers()" class='btn'>Show Users to create a room with</button>
     <!-- <button onclick="window.location.href='createroom.html'">Create Room</button> -->
     <div id="users"></div>
     <h1>Links to Created Rooms</h1>
-    <div id="links"></div>
+    <div id="links" ></div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="main.js"></script>
 </body>

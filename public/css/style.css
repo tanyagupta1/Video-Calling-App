@@ -36,10 +36,31 @@ a {
 	background-color: rgb(236, 22, 75);
 	/* color: var(--dark-color-a); */
 	color: blanchedalmond;
-	border: 5px;
+	margin-bottom: 10px;
 	font-size: 17px;
+	
 }
-
+button:hover {
+	background-color: #4CAF50; /* Green */
+	color: white;
+  }
+.btn2 {
+	cursor: pointer;
+	padding: 5px 15px;
+	/* background: var(--light-color); */
+	background-color: rgb(142, 141, 177);
+	/* color: var(--dark-color-a); */
+	color: blanchedalmond;
+	border: solid;
+	border-color: black;
+	font-size: 14px;
+	margin-bottom: 5px;
+	
+}
+button:disabled
+{
+	background: #dddddd;
+}
 /* Chat Page */
 
 .chat-container {

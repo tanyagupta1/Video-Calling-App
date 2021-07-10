@@ -69,20 +69,29 @@ socket.on('rooms list',(docs)=>
   for(var i=0;i<docs.length;i++)
   {
       console.log(docs[i].roomname)
-      
+      var mydiv=document.createElement('div')
       var a=document.createElement('a')         
       var link = document.createTextNode(docs[i].roomname);
       a.appendChild(link); 
       a.title = docs[i].roomname; 
       a.href = "chat.html?username="+name+"&room="+docs[i].roomname;  
-      document.getElementById('links').append(a);
+      mydiv.append(a)
+      document.getElementById('links').append(mydiv);
   }
 })
 function displayUsers()
 {
   console.log("asking for user list")
-    socket.emit('send users',name)
+    socket.emit('all rooms')
+    
 }
+let rooms=[]
+socket.on('all rooms',(docs)=>
+{
+  for(var i=0;i<docs.length;i++)
+  rooms.push(docs[i].roomname)
+  socket.emit('send users',name)
+})
 
 
 socket.on('user list',(docs)=>{
@@ -91,7 +100,16 @@ socket.on('user list',(docs)=>{
     for(var i=0;i<docs.length;i++)
   {
       console.log(docs[i].username)
+      var tmp=name+"_"+docs[i].username
+      var ind=rooms.indexOf(tmp)
+      tmp=docs[i].username+"_"+name
+      ind=Math.max(ind,rooms.indexOf(tmp));
+      console.log("index is ",ind)
+      if(ind==-1)
+      {
+      var mydiv= document.createElement('div');
       var btn= document.createElement('button');
+      btn.classList.add("btn2");
       btn.innerHTML=docs[i].username
       btn.addEventListener("click", function () 
       {
@@ -101,19 +119,22 @@ socket.on('user list',(docs)=>{
       this.disabled=true;
       socket.emit('create room',{rname,name,other})
       console.log(name,other,rname)
+      var linkdiv=document.createElement('div')
       var a=document.createElement('a')         
       var link = document.createTextNode(rname);
+      // linkdiv.align="center"
       a.appendChild(link); 
       a.title = rname; 
-      a.href = "chat.html?username="+name+"&room="+rname;  
-      document.getElementById('links').append(a);
-      });
-      
-      
-      document.getElementById('users').appendChild(btn); 
+      a.href = "chat.html?username="+name+"&room="+rname; 
+      linkdiv.append(a) 
+      document.getElementById('links').append(linkdiv);
+      })
+      mydiv.append(btn)
+      document.getElementById('users').appendChild(mydiv);
+    }
+   
   }
-
-
+   
 })
 
 
