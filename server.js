@@ -49,7 +49,7 @@ const RoomUsers = mongoose.model('RoomUsers', roomUserSchema);
 
 const userSchema = new mongoose.Schema({
     username: String,
-    email:String,
+    // email:String,
     password:String
   });
   const users = mongoose.model('users', userSchema);
@@ -63,9 +63,9 @@ io.on('connection', socket => {
   console.log("connected now");
   
 
-  socket.on('register',({name,email,psw})=>{
+  socket.on('register',({name,psw})=>{
      
-      console.log(name,email,psw)
+      console.log(name,psw)
       var query = users.find({username:name},function(err,docs){
       
         if(err) console.log(err)
@@ -78,7 +78,7 @@ query.count(function (err, count) {
     if(reg==0)
     {
       console.log('registering user')
-    var newUser=new users({username:name,email:email,password:psw})
+    var newUser=new users({username:name,password:psw})
     newUser.save(function(err){
         if(err) console.log(err);
        })

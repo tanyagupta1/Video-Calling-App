@@ -56,7 +56,8 @@ const { psw,name } = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
 });
 const socket = io();
-socket.emit('register',{name,email,psw})
+
+socket.emit('register',{name,psw})
 document.getElementById('title').innerHTML="Welcome  "+name
 function displayRooms()
 {
