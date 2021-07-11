@@ -52,7 +52,7 @@
 // }
 
 let users;
-const { email, psw,name } = Qs.parse(location.search, {
+const { psw,name } = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
 });
 const socket = io();
