@@ -297,3 +297,9 @@ button:disabled
 	justify-content: space-between;
 	min-height: 25vh;
 }
+.heading
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
