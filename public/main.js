@@ -83,6 +83,7 @@ socket.on('rooms list',(docs)=>
 })
 function displayUsers()
 {
+  document.getElementById('userlist').disabled=true
   console.log("asking for user list")
     socket.emit('all rooms')
     
