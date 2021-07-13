@@ -27,7 +27,7 @@ You will be prompted to allow access to your video and audio. After allowing acc
   
 # Running the app on your local machine
   * Install node.js
-  * Install the node.js libraries express,socket.io
+  * Install the node.js libraries express, moment,mongoose,nodemon,simple-peer,socket.io, uuid
   * run npm start on the terminal to start a server at port 4000
   * open localhost://4000 in a browser to access the app
   
